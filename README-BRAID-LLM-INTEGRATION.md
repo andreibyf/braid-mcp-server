@@ -25,9 +25,9 @@ flowchart LR
     A[User/System] -->|Braid Action Envelope| MCP[Braid MCP Server]
     MCP --|Business Action (no LLM)|--> BIZ[Business Adapter]
     MCP --|AI Action|--> LLMAD[LLM Adapter]
-    LLMAD --> SDK[@braid/braid-llm-sdk]
-    SDK -->|Policy, Tenant Isolation| POLICY[Policy/Isolation Audit]
-    SDK -->|Result Validation| LLM[LLM API/Model]
+    LLMAD --> SDK[Braid LLM SDK]
+    SDK -->|Policy, Tenant Isolation| POLICY[Policy & Audit]
+    SDK -->|Result Validation| LLM[LLM API or Model]
     SDK --|Validated Result|--> LLMAD
     LLMAD --|Validated/Audited Result|--> MCP
     MCP --|Response Envelope|--> A
@@ -208,12 +208,12 @@ sequenceDiagram
 flowchart LR
     A[Finance Staff] -->|Braid Action (Analysis Request)| MCP2[Braid MCP Server]
     MCP2 -->|LLM/AI Allowed Only for Finance| LLMAD2[LLM Adapter]
-    LLMAD2 -->|Policy/Isolation| SDK2[@braid/braid-llm-sdk]
-    SDK2 -- Policy Denied/Redacted Result --> LLMAD2
+    LLMAD2 -->|Policy/Isolation| SDK2[Braid LLM SDK]
+    SDK2 --|Policy Denied/Redacted Result|--> LLMAD2
     SDK2 -.-> LLM2[LLM/AI]
-    LLM2 -- Data (no PII) --> SDK2
+    LLM2 --|Data (no PII)|--> SDK2
     LLMAD2 --> MCP2
-    MCP2 -->|Audited Result| A
+    MCP2 -->|Audited Result|--> A
 ```
 
 ---
