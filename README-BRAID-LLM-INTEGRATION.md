@@ -206,14 +206,22 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    A[Finance Staff] -->|Braid Action (Analysis Request)| MCP2[Braid MCP Server]
-    MCP2 -->|LLM/AI Allowed Only for Finance| LLMAD2[LLM Adapter]
-    LLMAD2 -->|Policy/Isolation| SDK2[Braid LLM SDK]
-    SDK2 --|Policy Denied/Redacted Result|--> LLMAD2
-    SDK2 -.-> LLM2[LLM/AI]
-    LLM2 --|Data (no PII)|--> SDK2
+    A[Finance Staff] --> MCP2[Braid MCP Server]
+    MCP2 --> LLMAD2[LLM Adapter]
+    LLMAD2 --> SDK2[Braid LLM SDK]
+    SDK2 --> LLM2[LLM AI]
+    LLM2 --> SDK2
+    SDK2 --> LLMAD2
     LLMAD2 --> MCP2
-    MCP2 -->|Audited Result|--> A
+    MCP2 --> A
+    B1(Action Request)
+    A -- B1 --> MCP2
+    B2(LLM/AI Only for Finance)
+    MCP2 -- B2 --> LLMAD2
+    B3(Policy/Isolation)
+    LLMAD2 -- B3 --> SDK2
+    B4(Audited Result)
+    MCP2 -- B4 --> A
 ```
 
 ---
