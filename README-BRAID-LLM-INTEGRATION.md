@@ -23,14 +23,14 @@ Integrating `@braid/braid-llm-sdk` with the Braid MCP Server offers a unified, A
 ```mermaid
 flowchart LR
     A[User/System] -->|Braid Action Envelope| MCP[Braid MCP Server]
-    MCP -- Business Action (no LLM) --> BIZ[Business Adapter(s)]
-    MCP -- AI Action --> LLMAD[LLM Adapter]
+    MCP --|Business Action (no LLM)|--> BIZ[Business Adapter]
+    MCP --|AI Action|--> LLMAD[LLM Adapter]
     LLMAD --> SDK[@braid/braid-llm-sdk]
     SDK -->|Policy, Tenant Isolation| POLICY[Policy/Isolation Audit]
     SDK -->|Result Validation| LLM[LLM API/Model]
-    SDK -- Validated Result --> LLMAD
-    LLMAD -- Validated/Audited Result --> MCP
-    MCP -- Response Envelope --> A
+    SDK --|Validated Result|--> LLMAD
+    LLMAD --|Validated/Audited Result|--> MCP
+    MCP --|Response Envelope|--> A
 ```
 
 ---
