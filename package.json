@@ -1,0 +1,21 @@
+{
+  "name": "braid-mcp-server",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Generic MCP-style Braid server for routing business actions to pluggable adapters.",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}
